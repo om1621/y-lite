@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import ResultListItem from "./result_list_item";
 
 const ResultList = ({ videos, onChangeVideo }) => {

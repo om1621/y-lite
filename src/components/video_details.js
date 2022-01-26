@@ -10,6 +10,7 @@ function VideoDetails({ video }) {
             <iframe
               className="responsive-iframe"
               src={`https://www.youtube.com/embed/${video.id.videoId}`}
+              title={video.snippet.title}
             />
           </Box>
           <Box sx={{ my: 2, backgroundColor: "#eeeeee", p: 2 }}>

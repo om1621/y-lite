@@ -17,6 +17,7 @@ function ResultListItem({ video, onClickItem }) {
         <img
           style={{ width: "150px", height: "100px" }}
           src={video.snippet.thumbnails.high.url}
+          alt="ThumbnailImage"
         />
       </Box>
       <Typography variant="button">{video.snippet.title}</Typography>
