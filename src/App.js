@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { Container, Grid } from "@mui/material";
+import SearchBox from "./components/search_box";
+import axios from "axios";
+import ResultList from "./components/result_list";
+import VideoDetails from "./components/video_details";
 
 function App() {
+  const API_KEY = "AIzaSyBGkcheo5A1D1K9FNtCt1qliEwRvSiAKY4";
+
+  const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  const getResults = async (searchTerm) => {
+    try {
+      const res = await axios.get(
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${searchTerm}&type=video&key=${API_KEY}`
+      );
+
+      console.log(res.data);
+      setVideos(res.data.items);
+      setSelectedVideo(res.data.items[0]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getResults("osho jain");
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="lg" sx={{ px: 3, py: 3 }}>
+      <SearchBox getVideos={(val) => getResults(val)} />
+      <Grid columnSpacing={2} rowSpacing={4} sx={{ my: 1 }} container>
+        <Grid item xs={12} sm={7}>
+          <VideoDetails video={selectedVideo} />
+        </Grid>
+        <Grid item xs={12} sm={5}>
+          <ResultList
+            videos={videos}
+            onChangeVideo={(video) => setSelectedVideo(video)}
+          />
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 
