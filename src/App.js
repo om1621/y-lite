@@ -6,7 +6,7 @@ import ResultList from "./components/result_list";
 import VideoDetails from "./components/video_details";
 
 function App() {
-  const API_KEY = "AIzaSyBGkcheo5A1D1K9FNtCt1qliEwRvSiAKY4";
+  const API_KEY = "AIzaSyBW2ksu27aL2WoEpOoqHbM0l-s0Dw__jfk";
 
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
