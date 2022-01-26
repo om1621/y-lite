@@ -2,6 +2,12 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 
 function ResultListItem({ video, onClickItem }) {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <Box
       sx={{
@@ -11,7 +17,10 @@ function ResultListItem({ video, onClickItem }) {
         boxShadow: "2px 2px 5px 5px rgb(199 199 199 / 50%)",
         cursor: "pointer",
       }}
-      onClick={() => onClickItem(video)}
+      onClick={() => {
+        onClickItem(video);
+        scrollToTop();
+      }}
     >
       <Box sx={{ mr: 2 }}>
         <img

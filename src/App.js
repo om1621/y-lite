@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Container, Grid } from "@mui/material";
 import SearchBox from "./components/search_box";
 import axios from "axios";
@@ -6,28 +6,27 @@ import ResultList from "./components/result_list";
 import VideoDetails from "./components/video_details";
 
 function App() {
-  const API_KEY = "AIzaSyBW2ksu27aL2WoEpOoqHbM0l-s0Dw__jfk";
+  const API_KEY = "AIzaSyDF6BV1ttWj0L9T243Y1OfIAdmRP8L5aA0";
 
   const [videos, setVideos] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
 
-  const getResults = async (searchTerm) => {
+  const getResults = useCallback(async (searchTerm) => {
     try {
       const res = await axios.get(
         `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${searchTerm}&type=video&key=${API_KEY}`
       );
 
-      console.log(res.data);
       setVideos(res.data.items);
       setSelectedVideo(res.data.items[0]);
     } catch (err) {
       console.log(err);
     }
-  };
+  }, []);
 
   useEffect(() => {
     getResults("osho jain");
-  }, []);
+  }, [getResults]);
 
   return (
     <Container maxWidth="lg" sx={{ px: 3, py: 3 }}>

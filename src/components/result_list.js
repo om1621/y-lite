@@ -6,7 +6,11 @@ const ResultList = ({ videos, onChangeVideo }) => {
   return (
     <Box>
       {videos.map((video) => (
-        <ResultListItem video={video} onClickItem={onChangeVideo} />
+        <ResultListItem
+          key={video.snippet.thumbnails.high.url}
+          video={video}
+          onClickItem={onChangeVideo}
+        />
       ))}
     </Box>
   );
