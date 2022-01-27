@@ -2,6 +2,7 @@ import React from "react";
 import { Box, LinearProgress, Typography } from "@mui/material";
 
 function VideoDetails({ video }) {
+  console.log(video);
   return (
     <Box>
       {video !== null ? (

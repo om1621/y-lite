@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 
-function ResultListItem({ video, onClickItem }) {
+function ResultListItem({ video, onClickItem, index }) {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -21,6 +21,7 @@ function ResultListItem({ video, onClickItem }) {
         onClickItem(video);
         scrollToTop();
       }}
+      data-testid={`list-item-${index}`}
     >
       <Box sx={{ mr: 2 }}>
         <img
